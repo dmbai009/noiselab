@@ -1,8 +1,8 @@
 import{validateDeepFilterModel,deepFilterRuntime,MODEL_SHA256}from'./deepfilternet3.js';
 export const algorithms = [
   { id:'rnnoise', name:'RNNoise', version:'2025.1.5 · Xiph 70f1d256', rate:48000, frameSize:480, delay:960, available:true, note:'48 kHz · 20 ms · BSD-3 / Apache-2.0' },
-  { id:'gtcrn', name:'GTCRN', version:'0.0.3 · gtcrn_simple.onnx', rate:16000, frameSize:256, delay:256, available:true, note:'16 kHz внутри · полоса до 8 kHz · MIT' },
-  { id:'deepfilternet3', name:'DeepFilterNet3', version:'0.5.7-pre · official Rust / Tract 0.21.4', rate:48000, frameSize:480, delay:1440, available:true, note:'48 kHz · 30 ms · официальная модель выбирается один раз' }
+  { id:'gtcrn', name:'GTCRN', version:'0.0.3 · gtcrn_simple.onnx', rate:16000, frameSize:256, delay:256, available:true, note:'16 kHz internal · bandwidth up to 8 kHz · MIT' },
+  { id:'deepfilternet3', name:'DeepFilterNet3', version:'0.5.7-pre · official Rust / Tract 0.21.4', rate:48000, frameSize:480, delay:1440, available:true, note:'48 kHz · 30 ms · select the official model once' }
 ];
 const cache = new Map();
 async function load(id) {
