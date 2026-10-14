@@ -1,0 +1,11 @@
+import {spawn}from'node:child_process';import electron from'electron';import {mkdir,writeFile}from'node:fs/promises';
+await mkdir('test-output',{recursive:true});
+const child=spawn(process.argv[2]||electron,process.argv[2]?['--smoke-test']:['.','--smoke-test'],{cwd:process.cwd(),env:{...process.env,ELECTRON_ENABLE_LOGGING:'1'},windowsHide:true,stdio:['ignore','pipe','pipe']});
+let output='';child.stdout.on('data',d=>{output+=d;process.stdout.write(d);});child.stderr.on('data',d=>{output+=d;process.stderr.write(d);});
+const timer=setTimeout(()=>child.kill(),60000);
+const exit=await new Promise((resolve,reject)=>{child.on('error',reject);child.on('exit',resolve);});clearTimeout(timer);await writeFile('test-output/electron-smoke.log',output);
+if(exit!==0 || !output.includes('NOISELAB_SMOKE='))throw new Error('Electron smoke failed: '+exit);
+const closing=spawn(process.argv[2]||electron,process.argv[2]?['--close-test']:['.','--close-test'],{cwd:process.cwd(),windowsHide:true,stdio:['ignore','pipe','pipe']});
+let closeOutput='';closing.stdout.on('data',d=>{closeOutput+=d;process.stdout.write(d);});closing.stderr.on('data',d=>{closeOutput+=d;process.stderr.write(d);});
+const closeTimer=setTimeout(()=>closing.kill(),60000);const closeExit=await new Promise((resolve,reject)=>{closing.on('error',reject);closing.on('exit',resolve);});clearTimeout(closeTimer);await writeFile('test-output/electron-close.log',closeOutput);
+if(closeExit!==0||!closeOutput.includes('NOISELAB_CLOSE_TEST='))throw new Error('Close during processing failed');

@@ -1,0 +1,9 @@
+{
+  "public/vendor/rnnoise/rnnoise.js": "e6958293a0118bf9860cb2753332f7562531cc987c914552c426cd7d7180a63e",
+  "public/vendor/gtcrn/index.js": "472878b0fb37c4b7baa2dd8ea11355f4febc1fa0d96bb7a49e1774207edf2f3a",
+  "public/vendor/gtcrn/gtcrn.wasm": "01a5286ddaa1ce6d0dd5510bd9241f3bf0cc727a05d5767ae6881d85d9983719",
+  "public/vendor/deepfilternet3/df.js": "bf4b153e78a66993bb41316aa8d8e8ff27980e4d1bc0b07017a727778b4fa130",
+  "public/vendor/deepfilternet3/df_bg.wasm": "f414193e213d5dfdd8c3dfd09a9c77a4afde688036ddb50aef2a584ff0207e56",
+  "public/vendor/ogg-vorbis/index.js": "5888cf352f94095c41fd1f5604b0afc7927091836141476d8e85b01b9eeb01d0",
+  "public/vendor/ogg-opus/index.js": "07579971c365a742399e40f50b09be942807ada89cbc538cf109f34acc496df7"
+}

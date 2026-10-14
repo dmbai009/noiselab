@@ -1,0 +1,75 @@
+{
+  "name": "noiselab",
+  "version": "0.3.0",
+  "description": "Local WAV and OGG speech denoising laboratory",
+  "private": true,
+  "type": "module",
+  "main": "electron/main.cjs",
+  "author": "NoiseLab contributors",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "postinstall": "node tools/vendor.mjs && node tools/notices.mjs",
+    "vendor": "node tools/vendor.mjs && node tools/notices.mjs",
+    "start": "electron .",
+    "browser": "node server/index.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "node tools/browser-test.mjs",
+    "test:electron": "node tools/electron-test.mjs",
+    "test:stability": "node tools/stability-test.mjs",
+    "test:ogg:browser": "node tools/ogg-browser-test.mjs",
+    "test:ogg:electron": "node tools/ogg-electron-test.mjs",
+    "test:recovery": "node tools/recovery-test.mjs",
+    "test:deepfilter:browser": "node tools/deepfilternet3-browser-test.mjs",
+    "test:deepfilter:electron": "node tools/deepfilternet3-electron-test.mjs",
+    "build:deepfilter": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build-deepfilter.ps1",
+    "benchmark": "node tools/benchmark.mjs",
+    "build:win": "electron-builder --win --dir",
+    "build:portable": "electron-builder --win portable"
+  },
+  "dependencies": {
+    "@sapphi-red/gtcrn-wasm": "0.0.3",
+    "@shiguredo/rnnoise-wasm": "2025.1.5",
+    "@wasm-audio-decoders/ogg-vorbis": "0.1.20",
+    "ogg-opus-decoder": "1.7.5"
+  },
+  "devDependencies": {
+    "electron": "44.7.2",
+    "electron-builder": "26.15.3",
+    "esbuild": "0.28.2",
+    "puppeteer-core": "25.13.0"
+  },
+  "build": {
+    "appId": "local.noiselab.app",
+    "productName": "NoiseLab",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**",
+      "server/**",
+      "public/**",
+      "models/**",
+      "runtime/**",
+      "licenses/**",
+      "LICENSE",
+      "THIRD_PARTY_NOTICES",
+      "package.json"
+    ],
+    "extraFiles": [
+      "README.md",
+      "docs/**",
+      "LICENSE",
+      "THIRD_PARTY_NOTICES",
+      "licenses/**"
+    ],
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "signAndEditExecutable": false
+    }
+  }
+}

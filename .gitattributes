@@ -1,0 +1,7 @@
+* text=auto
+*.wasm binary
+*.png binary
+*.jpg binary
+*.zip binary
+public/vendor/** -text
+licenses/** -text
